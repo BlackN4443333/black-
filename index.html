@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOJA BLACK - Início</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        steamDark: '#171a21',
+                        steamCard: '#1b2838',
+                        steamHeader: '#171a21',
+                        steamBlue: '#2a475e',
+                        steamAccent: '#66c0f4',
+                        steamHover: '#c7d5e0',
+                        steamGreen: '#5c7e10'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Inter & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/css2?family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-steamDark text-gray-200 min-h-screen flex flex-col selection:bg-steamAccent selection:text-black">
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-[#171a21] border-b border-gray-800 sticky top-0 z-40 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand / Logo -->
+            <div class="flex items-center space-x-8">
+                <div class="flex items-center space-x-2 cursor-pointer" onclick="location.reload()">
+                    <div class="bg-steamAccent text-black p-2 rounded-lg font-black text-xl tracking-wider flex items-center shadow-lg">
+                        <i class="fa-solid fa-gamepad mr-2"></i> LOJA BLACK
+                    </div>
+                </div>
+                <!-- Navigation Links -->
+                <nav class="hidden md:flex space-x-6 text-sm font-medium uppercase tracking-wider text-gray-300">
+                    <a href="#" class="text-white hover:text-steamAccent transition border-b-2 border-steamAccent pb-1">Store</a>
+                    <a href="#" class="hover:text-steamAccent transition">Library</a>
+                    <a href="#" class="hover:text-steamAccent transition">Community</a>
+                    <a href="#" class="hover:text-steamAccent transition">About</a>
+                </nav>
+            </div>
+
+            <!-- Right Profile / Login Button -->
+            <div class="flex items-center space-x-4">
+                <div class="hidden sm:flex items-center space-x-2 bg-[#2a475e]/40 px-3 py-1.5 rounded-md border border-steamAccent/30 text-xs">
+                    <i class="fa-solid fa-wallet text-steamAccent"></i>
+                    <span class="text-gray-400">Saldo:</span>
+                    <span class="text-white font-semibold" id="userWallet">R$ 0,00</span>
+                </div>
+                <div id="authArea">
+                    <button onclick="startLoginFlow()" class="bg-[#5c7e10] hover:bg-[#6fa810] text-white text-xs font-semibold px-4 py-2 rounded shadow transition flex items-center space-x-2">
+                        <i class="fa-solid fa-user"></i>
+                        <span id="authBtnText">ENTRAR / LOGIN</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sub Header / Search & Categories -->
+    <div class="bg-[#1b2838] border-b border-[#2a475e]/30 shadow-inner">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-4 text-sm text-gray-400 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0">
+                <a href="#" class="text-white hover:text-steamAccent whitespace-nowrap">Seus Destaques</a>
+                <a href="#" class="hover:text-steamAccent whitespace-nowrap">Navegar</a>
+                <a href="#" class="hover:text-steamAccent whitespace-nowrap">Lista de Desejos</a>
+                <a href="#" class="hover:text-steamAccent whitespace-nowrap">Pontos</a>
+            </div>
+            <!-- Search bar -->
+            <div class="relative w-full sm:w-72">
+                <input type="text" placeholder="pesquisar na loja..." class="w-full bg-[#31698a]/30 border border-[#31698a]/50 rounded px-3 py-1.5 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-steamAccent transition">
+                <button class="absolute right-2.5 top-2 text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-12">
+
+        <!-- Featured Carousel / Showcase (Portal 2 style banner) -->
+        <section class="bg-[#1b2838] rounded-xl overflow-hidden border border-[#2a475e]/40 shadow-2xl grid grid-cols-1 lg:grid-cols-12">
+            <!-- Banner Image & Background -->
+            <div class="lg:col-span-8 relative h-72 sm:h-96 bg-cover bg-center flex items-end p-6" style="background-image: linear-gradient(to top, #1b2838, transparent), url('https://placehold.co/1200x600/101820/66c0f4?text=PORTAL+2+BANNER');">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1b2838] via-transparent to-transparent"></div>
+                <div class="relative z-10">
+                    <span class="bg-steamAccent/20 text-steamAccent border border-steamAccent/40 text-xs font-bold px-2.5 py-1 rounded uppercase tracking-wider">Destaque do Dia</span>
+                    <h1 class="text-3xl sm:text-5xl font-black text-white mt-2 drop-shadow-md">PORTAL 2</h1>
+                    <p class="text-gray-300 text-sm mt-1 max-w-lg hidden sm:block">Jogue a obra-prima cooperativa e desafie as leis da física com sua arma de portais.</p>
+                </div>
+            </div>
+            <!-- Banner Sidebar Details -->
+            <div class="lg:col-span-4 p-6 flex flex-col justify-between bg-[#171a21]/80 backdrop-blur">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Imagens e Análises</h3>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <img src="https://placehold.co/300x150/1b2838/66c0f4?text=Screenshot+1" class="rounded border border-gray-700 object-cover h-20 w-full" alt="screenshot">
+                        <img src="https://placehold.co/300x150/1b2838/66c0f4?text=Screenshot+2" class="rounded border border-gray-700 object-cover h-20 w-full" alt="screenshot">
+                    </div>
+                    <div class="bg-[#1b2838] p-3 rounded border border-gray-800 text-xs text-gray-300">
+                        <span class="text-steamAccent font-bold">Análises Gerais:</span> Extremamente Positivas (98%)
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-gray-400 text-sm">Preço:</span>
+                        <span class="text-green-400 font-bold text-lg">R$ 32,99</span>
+                    </div>
+                    <button onclick="handleGameAction('Portal 2', 'R$ 32,99')" class="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 text-white font-bold py-3 px-4 rounded shadow-lg transition flex items-center justify-center space-x-2 text-sm uppercase tracking-wider">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span>Adquirir / Instalar</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Games Grid Showcase -->
+        <section>
+            <div class="flex items-center justify-between mb-6 border-b border-gray-800 pb-3">
+                <h2 class="text-xl font-bold uppercase tracking-wider text-white flex items-center space-x-2">
+                    <i class="fa-solid fa-fire text-steamAccent"></i>
+                    <span>Jogos em Destaque e Recomendados</span>
+                </h2>
+                <div class="text-sm text-gray-400">Mostrando 1–6 de 6</div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Game Card 1 -->
+                <div class="bg-[#1b2838] rounded-xl overflow-hidden border border-[#2a475e]/40 shadow-xl hover:border-steamAccent/60 transition duration-300 flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://placehold.co/600x300/15202b/66c0f4?text=Dota+2" alt="Dota 2" class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+                        <span class="absolute top-2 right-2 bg-black/60 backdrop-blur px-2 py-1 rounded text-xs font-semibold text-green-400">Gratuito para Jogar</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Dota 2</h3>
+                            <p class="text-xs text-gray-400 mt-1 line-clamp-2">Todo dia, milhões de jogadores ao redor do mundo entram em batalha como um dos mais de cem heróis do Dota.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-800 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-gray-400 uppercase">Free to Play</span>
+                            <button onclick="handleGameAction('Dota 2', 'Gratuito')" class="bg-steamBlue hover:bg-[#385c78] text-white text-xs font-bold px-4 py-2 rounded transition flex items-center space-x-1.5 uppercase">
+                                <i class="fa-solid fa-download"></i>
+                                <span>Instalar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game Card 2 -->
+                <div class="bg-[#1b2838] rounded-xl overflow-hidden border border-[#2a475e]/40 shadow-xl hover:border-steamAccent/60 transition duration-300 flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://placehold.co/600x300/15202b/66c0f4?text=Dying+Light" alt="Dying Light" class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+                        <span class="absolute top-2 right-2 bg-black/60 backdrop-blur px-2 py-1 rounded text-xs font-semibold text-white">R$ 74,99</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Dying Light</h3>
+                            <p class="text-xs text-gray-400 mt-1 line-clamp-2">Jogo de ação e sobrevivência em mundo aberto zumbi ambientado em uma cidade pós-apocalíptica.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-800 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-green-400">R$ 74,99</span>
+                            <button onclick="handleGameAction('Dying Light', 'R$ 74,99')" class="bg-steamBlue hover:bg-[#385c78] text-white text-xs font-bold px-4 py-2 rounded transition flex items-center space-x-1.5 uppercase">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span>Adquirir</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game Card 3 -->
+                <div class="bg-[#1b2838] rounded-xl overflow-hidden border border-[#2a475e]/40 shadow-xl hover:border-steamAccent/60 transition duration-300 flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://placehold.co/600x300/15202b/66c0f4?text=Counter-Strike+2" alt="Counter-Strike 2" class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+                        <span class="absolute top-2 right-2 bg-black/60 backdrop-blur px-2 py-1 rounded text-xs font-semibold text-green-400">Gratuito para Jogar</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Counter-Strike 2</h3>
+                            <p class="text-xs text-gray-400 mt-1 line-clamp-2">Para uma nova era, o maior FPS tático gratuito do mundo com gráficos aprimorados e servidores dedicados.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-800 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-gray-400 uppercase">Free to Play</span>
+                            <button onclick="handleGameAction('Counter-Strike 2', 'Gratuito')" class="bg-steamBlue hover:bg-[#385c78] text-white text-xs font-bold px-4 py-2 rounded transition flex items-center space-x-1.5 uppercase">
+                                <i class="fa-solid fa-download"></i>
+                                <span>Instalar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game Card 4 -->
+                <div class="bg-[#1b2838] rounded-xl overflow-hidden border border-[#2a475e]/40 shadow-xl hover:border-steamAccent/60 transition duration-300 flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://placehold.co/600x300/15202b/66c0f4?text=Factorio" alt="Factorio" class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+                        <span class="absolute top-2 right-2 bg-black/60 backdrop-blur px-2 py-1 rounded text-xs font-semibold text-white">R$ 50,00</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Factorio</h3>
+                            <p class="text-xs text-gray-400 mt-1 line-clamp-2">Construa e crie fábricas automatizadas em um planeta alienígena hostil enquanto gerencia recursos.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-800 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-green-400">R$ 50,00</span>
+                            <button onclick="handleGameAction('Factorio', 'R$ 50,00')" class="bg-steamBlue hover:bg-[#385c78] text-white text-xs font-bold px-4 py-2 rounded transition flex items-center space-x-1.5 uppercase">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span>Adquirir</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game Card 5 -->
+                <div class="bg-[#1b2838] rounded-xl overflow-hidden border border-[#2a475e]/40 shadow-xl hover:border-steamAccent/60 transition duration-300 flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://placehold.co/600x300/15202b/66c0f4?text=Terraria" alt="Terraria" class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+                        <span class="absolute top-2 right-2 bg-black/60 backdrop-blur px-2 py-1 rounded text-xs font-semibold text-white">R$ 19,99</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Terraria</h3>
+                            <p class="text-xs text-gray-400 mt-1 line-clamp-2">Cave, lute, explore, construa! Nada é impossível neste jogo de aventura sandbox repleto de ação.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-800 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-green-400">R$ 19,99</span>
+                            <button onclick="handleGameAction('Terraria', 'R$ 19,99')" class="bg-steamBlue hover:bg-[#385c78] text-white text-xs font-bold px-4 py-2 rounded transition flex items-center space-x-1.5 uppercase">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span>Adquirir</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game Card 6 -->
+                <div class="bg-[#1b2838] rounded-xl overflow-hidden border border-[#2a475e]/40 shadow-xl hover:border-steamAccent/60 transition duration-300 flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://placehold.co/600x300/15202b/66c0f4?text=Cyberpunk+2077" alt="Cyberpunk 2077" class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+                        <span class="absolute top-2 right-2 bg-black/60 backdrop-blur px-2 py-1 rounded text-xs font-semibold text-white">R$ 199,99</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Cyberpunk 2077</h3>
+                            <p class="text-xs text-gray-400 mt-1 line-clamp-2">RPG de ação e aventura em mundo aberto ambientado na megalópole futurista de Night City.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-800 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-green-400">R$ 199,99</span>
+                            <button onclick="handleGameAction('Cyberpunk 2077', 'R$ 199,99')" class="bg-steamBlue hover:bg-[#385c78] text-white text-xs font-bold px-4 py-2 rounded transition flex items-center space-x-1.5 uppercase">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span>Adquirir</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#171a21] border-t border-gray-800 py-8 text-center text-xs text-gray-500 mt-12">
+        <div class="max-w-7xl mx-auto px-4 space-y-3">
+            <p>© 2026 LOJA BLACK Corporation. Todos os direitos reservados. Todas as marcas registradas pertencem aos seus respectivos donos no Brasil e em outros países.</p>
+            <div class="flex justify-center space-x-6 text-gray-400">
+                <a href="#" class="hover:text-white">Política de Privacidade</a>
+                <a href="#" class="hover:text-white">Termos de Uso</a>
+                <a href="#" class="hover:text-white">Suporte</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Universal Modal Container (Error & Auth Steps) -->
+    <div id="appModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm hidden">
+        <div class="bg-[#1b2838] border border-gray-700 rounded-xl p-6 max-w-md w-full mx-4 shadow-2xl relative transform transition-all">
+            <div class="absolute top-4 right-4 text-gray-400 hover:text-white cursor-pointer" onclick="closeModal()">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </div>
+
+            <!-- STEP 0: ERROR NOT LOGGED -->
+            <div id="modalStep0" class="modal-step hidden">
+                <div class="flex items-center space-x-3 text-red-400 mb-4">
+                    <div class="bg-red-500/20 p-3 rounded-full border border-red-500/40">
+                        <i class="fa-solid fa-triangle-exclamation text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Erro de Autenticação</h3>
+                        <p class="text-xs text-red-300">Acesso negado pela LOJA BLACK</p>
+                    </div>
+                </div>
+                <p id="errorModalMessage" class="text-sm text-gray-300 mb-6 leading-relaxed">
+                    Você precisa se logar na sua conta para prosseguir com a aquisição deste jogo.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button onclick="closeModal()" class="w-full bg-[#2a475e] hover:bg-[#325672] text-white text-xs font-bold py-2.5 px-4 rounded transition">
+                        Fechar
+                    </button>
+                    <button onclick="goToStep(1)" class="w-full bg-[#5c7e10] hover:bg-[#6fa810] text-white text-xs font-bold py-2.5 px-4 rounded transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span>Fazer Login Agora</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 1: INSERT GMAIL -->
+            <div id="modalStep1" class="modal-step hidden">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="bg-steamAccent/20 p-3 rounded-full border border-steamAccent/40 text-steamAccent">
+                        <i class="fa-solid fa-envelope text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Login LOJA BLACK</h3>
+                        <p class="text-xs text-gray-400">Passo 1 de 3: Identificação por Gmail</p>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-300 mb-4">Insira o seu endereço de e-mail do Gmail para começarmos:</p>
+                <form onsubmit="submitGmail(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1">E-MAIL (GMAIL)</label>
+                        <input type="email" id="inputGmail" required placeholder="seu-email@gmail.com" class="w-full bg-[#171a21] border border-gray-700 rounded p-2.5 text-sm text-white focus:outline-none focus:border-steamAccent">
+                    </div>
+                    <button type="submit" class="w-full bg-[#5c7e10] hover:bg-[#6fa810] text-white text-xs font-bold py-3 rounded transition uppercase tracking-wider">
+                        Avançar <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- STEP 2: CHOOSE USERNAME & PASSWORD -->
+            <div id="modalStep2" class="modal-step hidden">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="bg-steamAccent/20 p-3 rounded-full border border-steamAccent/40 text-steamAccent">
+                        <i class="fa-solid fa-user-gear text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Criar Perfil</h3>
+                        <p class="text-xs text-gray-400">Passo 2 de 3: Nome de Usuário e Senha</p>
+                    </div>
+                </div>
+                <form onsubmit="submitCredentials(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1">NOME DE USUÁRIO</label>
+                        <input type="text" id="inputUsername" required placeholder="Ex: player_black99" class="w-full bg-[#171a21] border border-gray-700 rounded p-2.5 text-sm text-white focus:outline-none focus:border-steamAccent">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1">SENHA</label>
+                        <input type="password" id="inputPassword" required placeholder="••••••••" class="w-full bg-[#171a21] border border-gray-700 rounded p-2.5 text-sm text-white focus:outline-none focus:border-steamAccent">
+                    </div>
+                    <button type="submit" class="w-full bg-[#5c7e10] hover:bg-[#6fa810] text-white text-xs font-bold py-3 rounded transition uppercase tracking-wider">
+                        Prosseguir para Verificação <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- STEP 3: VERIFICATION CODE -->
+            <div id="modalStep3" class="modal-step hidden">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="bg-steamAccent/20 p-3 rounded-full border border-steamAccent/40 text-steamAccent">
+                        <i class="fa-solid fa-shield-halved text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Código de Confirmação</h3>
+                        <p class="text-xs text-gray-400">Passo 3 de 3: Verificação do Gmail</p>
+                    </div>
+                </div>
+                <div class="bg-[#171a21] p-3 rounded border border-gray-800 mb-4 text-xs text-gray-300">
+                    Enviamos um código de verificação de 6 dígitos para <strong id="displayGmailUser" class="text-steamAccent"></strong>. 
+                    <div class="mt-1 text-[11px] text-gray-400 italic">(Dica de simulação: O código gerado é <span id="hintCode" class="font-mono text-green-400 font-bold">123456</span>)</div>
+                </div>
+                <form onsubmit="verifyCode(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1">CÓDIGO DE 6 DÍGITOS</label>
+                        <input type="text" id="inputCode" maxlength="6" required placeholder="123456" class="w-full bg-[#171a21] border border-gray-700 rounded p-2.5 text-center text-xl font-mono tracking-widest text-steamAccent focus:outline-none focus:border-steamAccent">
+                    </div>
+                    <button type="submit" class="w-full bg-[#5c7e10] hover:bg-[#6fa810] text-white text-xs font-bold py-3 rounded transition uppercase tracking-wider">
+                        Confirmar e Concluir Login <i class="fa-solid fa-check ml-2"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- SUCCESS GAME ACQUISITION MODAL -->
+            <div id="modalSuccessGame" class="modal-step hidden">
+                <div class="flex items-center space-x-3 text-green-400 mb-4">
+                    <div class="bg-green-500/20 p-3 rounded-full border border-green-500/40">
+                        <i class="fa-solid fa-circle-check text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Aquisição Concluída!</h3>
+                        <p class="text-xs text-green-300">Adicionado à sua Biblioteca</p>
+                    </div>
+                </div>
+                <p id="successGameMsg" class="text-sm text-gray-300 mb-6 leading-relaxed">
+                    O jogo foi adquirido/instalado com sucesso na sua conta LOJA BLACK. Divirta-se jogando!
+                </p>
+                <button onclick="closeModal()" class="w-full bg-[#5c7e10] hover:bg-[#6fa810] text-white text-xs font-bold py-2.5 px-4 rounded transition uppercase tracking-wider">
+                    Ok, Fechar
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // State management
+        let isLoggedIn = false;
+        let authData = {
+            gmail: '',
+            username: '',
+            password: '',
+            generatedCode: '123456'
+        };
+        let pendingGame = null;
+
+        function handleGameAction(gameName, price) {
+            pendingGame = { name: gameName, price: price };
+            if (!isLoggedIn) {
+                showErrorModal(`Você precisa se logar na sua conta LOJA BLACK para adquirir ou instalar o jogo <strong>${gameName}</strong>.`);
+            } else {
+                showSuccessGameModal(gameName);
+            }
+        }
+
+        function startLoginFlow() {
+            if (!isLoggedIn) {
+                goToStep(1);
+            } else {
+                alert('Você já está conectado na sua conta LOJA BLACK!');
+            }
+        }
+
+        function showErrorModal(message) {
+            document.getElementById('errorModalMessage').innerHTML = message;
+            openModal();
+            goToStep(0);
+        }
+
+        function showSuccessGameModal(gameName) {
+            document.getElementById('successGameMsg').innerHTML = `O jogo <strong>${gameName}</strong> foi adicionado com sucesso à sua biblioteca da LOJA BLACK. O download foi iniciado!`;
+            openModal();
+            document.querySelectorAll('.modal-step').forEach(el => el.classList.add('hidden'));
+            document.getElementById('modalSuccessGame').classList.remove('hidden');
+        }
+
+        function openModal() {
+            document.getElementById('appModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('appModal').classList.add('hidden');
+        }
+
+        function goToStep(stepNum) {
+            document.querySelectorAll('.modal-step').forEach(el => el.classList.add('hidden'));
+            if (stepNum === 0) {
+                document.getElementById('modalStep0').classList.remove('hidden');
+            } else if (stepNum === 1) {
+                document.getElementById('modalStep1').classList.remove('hidden');
+            } else if (stepNum === 2) {
+                document.getElementById('modalStep2').classList.remove('hidden');
+            } else if (stepNum === 3) {
+                document.getElementById('modalStep3').classList.remove('hidden');
+                document.getElementById('displayGmailUser').innerText = authData.gmail;
+            }
+            openModal();
+        }
+
+        function submitGmail(e) {
+            e.preventDefault();
+            const gmailVal = document.getElementById('inputGmail').value;
+            if (!gmailVal.includes('@')) {
+                alert('Por favor, insira um e-mail válido.');
+                return;
+            }
+            authData.gmail = gmailVal;
+            goToStep(2);
+        }
+
+        function submitCredentials(e) {
+            e.preventDefault();
+            const usernameVal = document.getElementById('inputUsername').value;
+            const passwordVal = document.getElementById('inputPassword').value;
+            if (usernameVal.length < 3) {
+                alert('O nome de usuário deve ter pelo menos 3 caracteres.');
+                return;
+            }
+            authData.username = usernameVal;
+            authData.password = passwordVal;
+
+            // Generate a random 6-digit verification code for realism
+            authData.generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
+            document.getElementById('hintCode').innerText = authData.generatedCode;
+
+            goToStep(3);
+        }
+
+        function verifyCode(e) {
+            e.preventDefault();
+            const codeVal = document.getElementById('inputCode').value;
+            if (codeVal !== authData.generatedCode) {
+                alert('Código incorreto! Digite o código de 6 dígitos exibido na dica.');
+                return;
+            }
+
+            // SUCCESS LOGIN!
+            isLoggedIn = true;
+            updateHeaderAfterLogin();
+            closeModal();
+
+            // If user clicked a game before logging in, proceed with acquisition now!
+            if (pendingGame) {
+                setTimeout(() => {
+                    showSuccessGameModal(pendingGame.name);
+                    pendingGame = null;
+                }, 400);
+            } else {
+                alert(`Login realizado com sucesso! Bem-vindo(a) à LOJA BLACK, ${authData.username}!`);
+            }
+        }
+
+        function updateHeaderAfterLogin() {
+            const authArea = document.getElementById('authArea');
+            authArea.innerHTML = `
+                <div class="flex items-center space-x-3 bg-[#2a475e] px-3 py-1.5 rounded-md border border-steamAccent">
+                    <i class="fa-solid fa-user-check text-green-400"></i>
+                    <span class="text-xs text-white font-bold">${authData.username}</span>
+                </div>
+            `;
+            document.getElementById('userWallet').innerText = 'R$ 100,00';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('appModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
